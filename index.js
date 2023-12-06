@@ -85,7 +85,7 @@ app.set("view engine", "ejs");
     });
 
 // search.ejs
-app.get("/search", (req, res) => {
+app.get("/search", async (req, res) => {
     // Check if the user is logged in
     const isLoggedIn = !!req.session.username;
 
@@ -96,11 +96,64 @@ app.get("/search", (req, res) => {
     };
 
     if (req.session.username) {
-        res.render(path.join(__dirname + '/views/search.ejs'), { isLoggedIn, extraData });
+        // Get the data from the database
+        const full_dataset = await get_full_data();
+
+        // Save the full_dataset to sessionStorage
+        req.session.personinfo = full_dataset;
+
+        // Save the session before continuing
+        req.session.save((err) => {
+            if (err) {
+                console.error("Error saving session:", err);
+                res.status(500).send("Internal Server Error");
+            } else {
+                // Render the search.ejs view and pass data
+                res.render(path.join(__dirname + '/views/search.ejs'), { isLoggedIn, extraData, personinfo: full_dataset });
+            }
+        });
     } else {
         res.redirect('/login');
     }
 });
+
+async function get_full_data() {
+    try {
+        const result = await knex('person_info as pi')
+        .select('pi.*')
+        .leftJoin(
+            knex
+            .select('eop.entry_id', 'o.organization')
+            .from('entry_organization_platform as eop')
+            .innerJoin('organizations as o', 'eop.organization_id', 'o.organization_id')
+            .as('organization_list'),
+            'pi.entry_id',
+            'organization_list.entry_id'
+        )
+        .leftJoin(
+            knex
+            .select('eop.entry_id', 'plat.platform')
+            .from('entry_organization_platform as eop')
+            .innerJoin('platforms as plat', 'eop.platform_id', 'plat.platform_id')
+            .as('platform_list'),
+            'pi.entry_id',
+            'platform_list.entry_id'
+        )
+        .groupBy('pi.entry_id')
+        .orderBy('pi.entry_id')
+        .select(
+            knex.raw("string_agg(DISTINCT platform_list.platform, ', ') AS concatenated_platforms"),
+            knex.raw("string_agg(DISTINCT organization_list.organization, ', ') AS concatenated_organizations")
+        );
+
+        //console.log(result);
+        return result;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 // blog.ejs (community)
     app.get("/community", (req, res) => {
@@ -138,8 +191,8 @@ app.get("/search", (req, res) => {
         connection: {
             host: process.env.RDS_HOSTNAME || "localhost",
             user: process.env.RDS_USERNAME || "postgres",
-            password: process.env.RDS_PASSWORD || "postgres",
-            database: process.env.RDS_DB_NAME || "bucket_list",
+            password: process.env.RDS_PASSWORD || "IS403BYU",
+            database: process.env.RDS_DB_NAME || "Provo_Mental_Health_Survey",
             port: process.env.RDS_PORT || 5432,
             ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
         }
