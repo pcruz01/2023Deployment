@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Accordions 01</title>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/owl.carousel.min.css">
+    <link rel="stylesheet" href="styles/magnific-popup.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/themify-icons.css">
+    <link rel="stylesheet" href="styles/nice-select.css">
+    <link rel="stylesheet" href="styles/flaticon.css">
+    <link rel="stylesheet" href="styles/gijgo.css">
+    <link rel="stylesheet" href="styles/animate.css">
+    <link rel="stylesheet" href="styles/slicknav.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="/scripts/survey.js" defer></script>
+	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <style>
+		body {
+          background-image: url('img/banner/banner2.jpg');
+          background-size: cover;
+		}
+  
+		header {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  z-index: 1000; /* Ensure the header is above other content */
+		}
+  
+		.container {
+		  margin-top: 125px; /* Adjust this value based on the header height */
+		  margin-right: 0;
+		  margin-left: 0;
+		  width: 1000px;
+		  max-width: none;
+		}
+
+        .card-content {
+            display: flex;
+            flex-direction: column; /* Adjust to a column layout */
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+		.arrow-icon {
+			font-size: 24px; /* Adjust the size as needed */
+		}
+
+        .card {
+            margin-top: 50px;
+            background-color: white;
+            height: 600px;
+            width: 900px;
+            border: 1px solid black;
+            position: absolute;
+            object-fit: cover;
+            object-position: left;
+            z-index: -1;
+            border-radius: 30px;
+
+            /* Center the card horizontally and vertically */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            /* Adjusted styles for the h1 tag */
+            text-align: center;
+            padding-top: 20px;
+        }
+
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px; /* Adjust as needed */
+        }
+
+        .button-left {
+            order: 1;
+            margin-left: 20px;
+        }
+
+        .button-right {
+            order: 2;
+            margin-right: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #3498db;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+	  </style>
+  </head>
+  
+  <body>
+    <!-- header-start -->
+    <header>
+      <div class="header-area " style="background-color: rgba(0, 0, 0, 0.5); height: 125px;">
+          <div id="sticky-header" class="main-header-area">
+              <div class="container-fluid p-0">
+                  <div class="row align-items-center no-gutters">
+                      <div class="col-xl-5 col-lg-6">
+                          <div class="main-menu  d-none d-lg-block">
+                              <nav>
+                                  <ul id="navigation">
+                                      <li><a class="active" href="/">home</a></li>
+                                      <% if (isLoggedIn) { %>
+                                          <li><a href="/dashboard">Dashboard</a></li>
+                                      <% } %>
+                                      <li><a href="/community">Community</a></li>
+                                      <li><a href="contact.html">Contact</a></li>
+                                  </ul>
+                              </nav>
+                          </div>
+                      </div>
+                      <div class="col-xl-2 col-lg-2">
+                          <div class="logo-img">
+                              <a href="/">
+                                  <img style="width: 100px;" src="img/circle_logo.png" alt="">
+                              </a>
+                          </div>
+                      </div>
+                      <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                          <div class="book_room">
+                              <div class="socail_links">
+                                  <ul>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-facebook-square"></i>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-twitter"></i>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-instagram"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <div class="book_btn d-none d-lg-block">
+                                  <% if (isLoggedIn) { %>
+                                      <a style="font-size: large; border-radius: 5px;" class="login" href="/logout">Sign Out</a>
+                                  <% } else { %>
+                                      <a style="font-size: large; border-radius: 5px;" class="login" href="/login">Sign In | Sign Up</a>
+                                  <% } %>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-12">
+                          <div class="mobile_menu d-block d-lg-none"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <form id="surveyForm" action="" method="">
+    <div class="container">
+        <div class="card" id="card1">
+            <h1>Personal Information</h1>
+            <div class="card-content">
+                <label for=""></label>
+                <div class="button-container">
+                    <!-- Move the Previous button to the left -->
+                    <div class="button-left">
+                        <button type="button" onclick="showCard(2, 1)" hidden>Previous</button>
+                    </div>
+                    <!-- Move the Next button to the right -->
+                    <div class="button-right">
+                        <button type="button" onclick="showCard(1, 2)">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="card2" hidden>
+            <h1>Question 2</h1>
+            <div class="card-content">
+                <div class="button-container">
+                    <!-- Move the Previous button to the left -->
+                    <div class="button-left">
+                        <button type="button" onclick="showCard(2, 1)">Previous</button>
+                    </div>
+                    <!-- Move the Next button to the right -->
+                    <div class="button-right">
+                        <button type="button" onclick="showCard(2, 3)">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+  </form>
+
+<!-- End Survey -->
+  </body>
+
+<script>
+    function showCard(n1, n2) {
+    let current = "card" + n1;
+    let desired = "card" + n2;
+
+    console.log(current);
+    console.log(desired);
+
+    // Hide the current card
+    document.getElementById(current).setAttribute("hidden", true);
+
+    // Remove "hidden" for the desired card
+    document.getElementById(desired).removeAttribute("hidden");
+    }
+</script>
+
+</html>
