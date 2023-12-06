@@ -55,10 +55,10 @@ app.set("view engine", "ejs");
 
         // Check if user exists in the database
         if (req.session.username) {
-            res.redirect('/dashboard')
+            res.redirect('/search')
         } else if (req.body.username === 'admin' && req.body.password === 'password') {
             req.session.username = req.body.username;
-            res.redirect('/dashboard');
+            res.redirect('/search');
         } else {
             res.send('Invalid Credentials');
         }
@@ -81,14 +81,19 @@ app.set("view engine", "ejs");
 
 // dashboard.ejs
     app.get("/dashboard", (req, res) => {
-        console.log('Session:', req.session);
-
-        if (req.session.username) {
-            res.render(path.join(__dirname + '/views/dashboard.ejs'));
-        } else {
-            res.redirect('/login');
-        }
+        res.render(path.join(__dirname + '/views/dashboard.ejs'));
     });
+
+// search.ejs
+app.get("/search", (req, res) => {
+    console.log('Session:', req.session);
+
+    if (req.session.username) {
+        res.render(path.join(__dirname + '/views/search.ejs'));
+    } else {
+        res.redirect('/login');
+    }
+});
 
 // blog.ejs (community)
     app.get("/community", (req, res) => {
