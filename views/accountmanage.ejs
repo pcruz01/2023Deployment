@@ -177,101 +177,30 @@
                 <thead>
                     <tr>
                         <th style="text-align: left;" scope="col">#</th>
-                        <th style="text-align: left;" scope="col">Time</th>
-                        <th style="text-align: left;" scope="col">City</th>
-                        <th style="text-align: left;" scope="col">Age</th>
-                        <th style="text-align: left;" scope="col">Gender</th>
-                        <th style="text-align: left;" scope="col">Relationship Status</th>
-                        <th style="text-align: left;" scope="col">Occupation</th>
-                        <th style="text-align: left;" scope="col">Organization(s)</th>
-                        <th style="text-align: left;" scope="col">Social Platform(s)</th>
-                        <th style="text-align: left;" scope="col">Daily Usage</th>
-                        <th style="text-align: left;" scope="col">Usage Without Purpose</th>
-                        <th style="text-align: left;" scope="col">Social Media Distraction</th>
-                        <th style="text-align: left;" scope="col">Restlessness</th>
-                        <th style="text-align: left;" scope="col">Anxiety Level</th>
-                        <th style="text-align: left;" scope="col">Ease of Distraction</th>
-                        <th style="text-align: left;" scope="col">Negative Social Comparison</th>
-                        <th style="text-align: left;" scope="col">Self Validation</th>
-                        <th style="text-align: left;" scope="col">Depression Level</th>
-                        <th style="text-align: left;" scope="col">Short Attention Span Level</th>
-                        <th style="text-align: left;" scope="col">Issues with Sleep</th>
-                        <th scope="col"></th>
+                        <th style="text-align: left;" scope="col">Username</th>
+                        <th style="text-align: left;" scope="col">First Name</th>
+                        <th style="text-align: left;" scope="col">Last Name</th>
+                        <th style="text-align: left;" scope="col">Email</th>
+                        <th style="text-align: left;" scope="col">Access Approved</th>
+                        
                     </tr>
                     </thead>
                     <tbody style="font-family: Arial; font-size: 9pt;">
-                    <% for (let iCount = 0; iCount < personinfo.length; iCount++) { %>
+                    <% for (let iCount = 1; iCount < userdata.length; iCount++) { %>
                         <tr>
-                        <td scope="row"><%= personinfo[iCount].entry_id %></td>
-                        <td><%= personinfo[iCount].time_entry %></td>
-                        <td><%= personinfo[iCount].city %></td>
-                        <td><%= personinfo[iCount].age %></td>
-                        <td><%= personinfo[iCount].gender %></td>
-                        <td><%= personinfo[iCount].relationship_status %></td>
-                        <td><%= personinfo[iCount].occupation_status %></td>
-                        <td><%= personinfo[iCount].concatenated_organizations %></td>
-                        <td><%= personinfo[iCount].concatenated_platforms %></td>
-                        <td><%= personinfo[iCount].daily_usage %></td>
-                        <td><%= personinfo[iCount].no_purpose_usage %></td>
-                        <td><%= personinfo[iCount].distracted_by_sm %></td>
-                        <td><%= personinfo[iCount].restlessness %></td>
-                        <td><%= personinfo[iCount].anxiety_level %></td>
-                        <td><%= personinfo[iCount].concetration_difficulty_level %></td>
-                        <td><%= personinfo[iCount].negative_comparison %></td>
-                        <td><%= personinfo[iCount].self_validation_level %></td>
-                        <td><%= personinfo[iCount].depressed_level %></td>
-                        <td><%= personinfo[iCount].fluctuation_interest_in_activites %></td>
-                        <td><%= personinfo[iCount].sleep_issue_level %></td>
-                        <td style="text-align: center;">
-                            <form action="/deleteCountry/<%= personinfo[iCount].entry_id %>" method="POST">
-                            <button type="submit">Delete</button>
-                            </form>
-                        </td>
+                        <td scope="row"><%= userdata[iCount].username %></td>
+                        <td><%= userdata[iCount].user_first_name %></td>
+                        <td><%= userdata[iCount].user_last_name %></td>
+                        <td><%= userdata[iCount].email %></td>
+                        <td><%= userdata[iCount].admin_permission %></td>
+                        
                         </tr>
                     <% } %>
                 </tbody>
             </table>
             <div class="card-footer text-body-secondary">
-                <% personinfo.length() %> Records Found
+                <% userdata.length() %> Records Found
             </div>
-        </div>
-
-        <br><br>
-        <div id="displaySearch" class="table-responsive" style="display: none;">
-            <table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm " cellspacing="0"
-            width="100%">
-                <thead>
-                    <tr>
-                        <th style="text-align: left;" scope="col">#</th>
-                        <th style="text-align: left;" scope="col">Time</th>
-                        <th style="text-align: left;" scope="col">City</th>
-                        <th style="text-align: left;" scope="col">Age</th>
-                        <th style="text-align: left;" scope="col">Gender</th>
-                        <th style="text-align: left;" scope="col">Relationship Status</th>
-                        <th style="text-align: left;" scope="col">Occupation</th>
-                        <th style="text-align: left;" scope="col">Organization(s)</th>
-                        <th style="text-align: left;" scope="col">Social Platform(s)</th>
-                        <th style="text-align: left;" scope="col">Daily Usage</th>
-                        <th style="text-align: left;" scope="col">Usage Without Purpose</th>
-                        <th style="text-align: left;" scope="col">Social Media Distraction</th>
-                        <th style="text-align: left;" scope="col">Restlessness</th>
-                        <th style="text-align: left;" scope="col">Anxiety Level</th>
-                        <th style="text-align: left;" scope="col">Ease of Distraction</th>
-                        <th style="text-align: left;" scope="col">Negative Social Comparison</th>
-                        <th style="text-align: left;" scope="col">Self Validation</th>
-                        <th style="text-align: left;" scope="col">Depression Level</th>
-                        <th style="text-align: left;" scope="col">Short Attention Span Level</th>
-                        <th style="text-align: left;" scope="col">Issues with Sleep</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody id="recordSearchBody" style="font-family: Arial; font-size: 9pt;">
-                    <tr id="recordDisplayRow">
-
-                    </tr>
-                </tbody>
-            </table>
-
         </div>
     </div>
     <!-- video_area_end -->
@@ -426,93 +355,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
         });
 
-        // Convert the data to a JSON string
-        let dataString = JSON.stringify(<%- JSON.stringify(personinfo) %>);
-
+        let dataString = "<% JSON.stringify(userdata) %>";
         // Store the data in sessionStorage
         sessionStorage.setItem('full_dataset', dataString);
 
         
         document.getElementById('displayButton').addEventListener('click', function() {
             document.getElementById('displayAll').style.display = 'block';
-            document.getElementById('displaySearch').style.display = 'none';
         });
         
-        function searchRecord() {
-            document.getElementById('displayAll').style.display = 'none';
-            document.getElementById('displaySearch').style.display = 'block';
-            // Retrieve the object from storage
-            let personinfo = JSON.parse(sessionStorage.getItem('full_dataset'));
-            console.log(personinfo);
-            
-            let recordNum = document.getElementById("recordNumInput").value;
-            console.log(personinfo[recordNum]);
-            
-            let tr = document.getElementById("recordDisplayRow");
-            let td = document.createElement("td"); 
-            td.innerHTML = personinfo[recordNum].entry_id;
-            tr.appendChild(td);
-            let td1 = document.createElement("tr");
-            td1.innerHTML = personinfo[recordNum].time_entry;
-            tr.appendChild(td1);
-            let td2 = document.createElement("td");
-            td2.innerHTML = personinfo[recordNum].city;
-            tr.appendChild(td2);
-            let td3 = document.createElement("td");
-            td3.innerHTML = personinfo[recordNum].age;
-            tr.appendChild(td3);
-            let td4 = document.createElement("td");
-            td4.innerHTML = personinfo[recordNum].gender;
-            tr.appendChild(td4);
-            let td5 = document.createElement("td");
-            td5.innerHTML = personinfo[recordNum].relationship_status;
-            tr.appendChild(td5);
-            let td6 = document.createElement("td");
-            td6.innerHTML = personinfo[recordNum].occupation_status;
-            tr.appendChild(td6);
-            let td7 = document.createElement("td");
-            td7.innerHTML = personinfo[recordNum].concatenated_organizations;
-            tr.appendChild(td7);
-            let td8 = document.createElement("td");
-            td8.innerHTML = personinfo[recordNum].concatenated_platforms;
-            tr.appendChild(td8);
-            let td9 = document.createElement("td");
-            td9.innerHTML = personinfo[recordNum].daily_usage;
-            tr.appendChild(td9);
-            let td10 = document.createElement("td");
-            td10.innerHTML = personinfo[recordNum].no_purpose_usage;
-            tr.appendChild(td10);
-            let td11 = document.createElement("td");
-            td11.innerHTML = personinfo[recordNum].distracted_by_sm;
-            tr.appendChild(td11);
-            let td12 = document.createElement("td");
-            td12.innerHTML = personinfo[recordNum].restlessness;
-            tr.appendChild(td12);
-            let td13 = document.createElement("td");
-            td13.innerHTML = personinfo[recordNum].anxiety_level;
-            tr.appendChild(td13);
-            let td14 = document.createElement("td");
-            td14.innerHTML = personinfo[recordNum].concetration_difficulty_level;
-            tr.appendChild(td14);
-            let td15 = document.createElement("td");
-            td15.innerHTML = personinfo[recordNum].negative_comparison;
-            tr.appendChild(td15);
-            td = document.createElement("td");
-            td.innerHTML = personinfo[recordNum].self_validation_level;
-            tr.appendChild(td);
-            td = document.createElement("td");
-            td.innerHTML = personinfo[recordNum].depressed_level;
-            tr.appendChild(td);
-            td = document.createElement("td");
-            td.innerHTML = personinfo[recordNum].fluctuation_interest_in_activites;
-            tr.appendChild(td);
-            td = document.createElement("td");
-            td.innerHTML = personinfo[recordNum].sleep_issue_level;
-            tr.appendChild(td);
-            
-
-            
-        }
+        
     </script>
 
 
