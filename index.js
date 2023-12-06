@@ -86,10 +86,17 @@ app.set("view engine", "ejs");
 
 // search.ejs
 app.get("/search", (req, res) => {
-    console.log('Session:', req.session);
+    // Check if the user is logged in
+    const isLoggedIn = !!req.session.username;
+
+    // Additional data to pass to the view if the user is logged in
+    const extraData = {
+        username: req.session.username,
+        // Add more data as needed
+    };
 
     if (req.session.username) {
-        res.render(path.join(__dirname + '/views/search.ejs'));
+        res.render(path.join(__dirname + '/views/search.ejs'), { isLoggedIn, extraData });
     } else {
         res.redirect('/login');
     }
