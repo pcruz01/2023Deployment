@@ -36,6 +36,7 @@ app.set("view engine", "ejs");
         // Additional data to pass to the view if the user is logged in
         const extraData = {
             username: req.session.username,
+            user_first_name: req.session.user_first_name,
             // Add more data as needed
         };
 
@@ -54,14 +55,27 @@ app.set("view engine", "ejs");
         console.log('Password:', req.body.password);
 
         // Check if user exists in the database
-        if (req.session.username) {
-            res.redirect('/search')
-        } else if (req.body.username === 'admin' && req.body.password === 'password') {
+        knex('user_login')
+        .where({
+          username: req.body.username,
+          password: req.body.password,
+          admin_permission: true
+        })
+        .select()
+        .then((users) => {
+          if (users.length > 0) {
             req.session.username = req.body.username;
+            req.session.user_first_name = users[0].user_first_name;
+
             res.redirect('/search');
-        } else {
-            res.send('Invalid Credentials');
-        }
+          } else {
+            res.send('Invalid Credentials or Insufficient Permissions');
+          }
+        })
+        .catch((error) => {
+          console.error('Error querying the database:', error);
+          res.status(500).send('Internal Server Error');
+        });
     });
 
 // Logout
@@ -92,6 +106,7 @@ app.get("/search", (req, res) => {
     // Additional data to pass to the view if the user is logged in
     const extraData = {
         username: req.session.username,
+        user_first_name: req.session.user_first_name,
         // Add more data as needed
     };
 
@@ -110,6 +125,7 @@ app.get("/search", (req, res) => {
         // Additional data to pass to the view if the user is logged in
         const extraData = {
             username: req.session.username,
+            user_first_name: req.session.user_first_name,
             // Add more data as needed
         };
 
@@ -125,11 +141,23 @@ app.get("/search", (req, res) => {
         // Additional data to pass to the view if the user is logged in
         const extraData = {
             username: req.session.username,
+            user_first_name: req.session.user_first_name,
             // Add more data as needed
         };
 
-        // Render the survey.ejs view and pass data
-        res.render(path.join(__dirname + '/views/survey.ejs'), { isLoggedIn, extraData });
+        
+        knex.select().from("platforms").then(platforms => {
+
+            knex.select().from("organizations").then(organizations => {
+                // Render the survey.ejs view and pass data
+                res.render(path.join(__dirname + '/views/survey.ejs'), { 
+                    isLoggedIn, 
+                    extraData, 
+                    myplatform: platforms,
+                    myorganization: organizations 
+                });
+            });
+        });        
     });
 
 
@@ -138,11 +166,23 @@ app.get("/search", (req, res) => {
         connection: {
             host: process.env.RDS_HOSTNAME || "localhost",
             user: process.env.RDS_USERNAME || "postgres",
-            password: process.env.RDS_PASSWORD || "postgres",
-            database: process.env.RDS_DB_NAME || "bucket_list",
+            password: process.env.RDS_PASSWORD || "IAmElonMuskrat",
+            database: process.env.RDS_DB_NAME || "provomentalhealthsurvey",
             port: process.env.RDS_PORT || 5432,
             ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
         }
+    });
+
+
+    knex.raw('SELECT 1+1 as result')
+    .then(() => {
+        console.log('Database is connected');
+    })
+    .catch((err) => {
+        console.error('Error connecting to the database:', err);
+    })
+    .finally(() => {
+        // Ensure to destroy the database connection
     });
 
 // Make sure server is listening
