@@ -52,6 +52,14 @@
             transform: translateY(-50%);
         }
 
+        .centered-questions {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the questions horizontally */
+            text-align: center;
+            margin-top: 20px;
+        }
+
 		.arrow-icon {
 			font-size: 24px; /* Adjust the size as needed */
 		}
@@ -82,12 +90,12 @@
         .button-container {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
-            margin-top: 20px; /* Adjust as needed */
+            /* margin-top: 20px; Adjust as needed */
         }
 
         .button-left {
-            order: 1;
             margin-left: 20px;
         }
 
@@ -113,6 +121,22 @@
 
         .button:hover {
             background-color: #2980b9;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the left */
+            margin-bottom: 10px;
+            width: 200px;
+        }
+
+        label {
+            margin-bottom: 5px; /* Optional: Adjust the space between label and input */
+        }
+
+        select {
+            width: 220px;
         }
 	  </style>
   </head>
@@ -187,14 +211,48 @@
   <form id="surveyForm" action="" method="">
     <div class="container">
         <div class="card" id="card1">
-            <h1>Personal Information</h1>
+            <h1>Social Media & Mental Health Survey</h1>
             <div class="card-content">
                 <label for=""></label>
                 <div class="button-container">
                     <!-- Move the Previous button to the left -->
                     <div class="button-left">
-                        <button type="button" onclick="showCard(2, 1)" hidden>Previous</button>
+                        <button type="button" onclick="showCard(2, 1)" style="color: white; background-color: white;">Previous</button>
                     </div>
+        
+                    <!-- Centered and stacked questions -->
+                    <div class="centered-questions">
+                        <div class="input-container">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" min="0">
+                        </div>
+                        <div class="input-container">
+                            <label for="gender">Gender</label>
+                            <select id="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <label for="rel_status">Relationship Status</label>
+                            <select id="rel_status">
+                                <option value="single">Single</option>
+                                <option value="relationship">In a Relationship</option>
+                                <option value="married">Married</option>
+                                <option value="divorced">Divorced</option>
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <label for="occ_status">Occupation Status</label>
+                            <select id="rel_status">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+        
                     <!-- Move the Next button to the right -->
                     <div class="button-right">
                         <button type="button" onclick="showCard(1, 2)">Next</button>
@@ -202,18 +260,60 @@
                 </div>
             </div>
         </div>
+        
 
         <div class="card" id="card2" hidden>
-            <h1>Question 2</h1>
+            <h1>Survey</h1>
             <div class="card-content">
                 <div class="button-container">
                     <!-- Move the Previous button to the left -->
                     <div class="button-left">
                         <button type="button" onclick="showCard(2, 1)">Previous</button>
                     </div>
+        
+                    <!-- Centered and stacked questions -->
+                    <div class="centered-questions">
+                        <label for="">Q1</label>
+                        <input type="text">
+                        <label for="">Q2</label>
+                        <input type="text">
+                    </div>
+        
                     <!-- Move the Next button to the right -->
                     <div class="button-right">
                         <button type="button" onclick="showCard(2, 3)">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="card3" hidden>
+            <h1>Survey</h1>
+            <div class="card-content">
+                <div class="button-container">
+                    <!-- Move the Previous button to the left -->
+                    <div class="button-left">
+                        <button type="button" onclick="showCard(3, 2)">Previous</button>
+                    </div>
+                    <!-- Move the Next button to the right -->
+                    <div class="button-right">
+                        <button type="button" onclick="showCard(3, 4)">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="card4" hidden>
+            <h1>Survey</h1>
+            <div class="card-content">
+                <div class="button-container">
+                    <!-- Move the Previous button to the left -->
+                    <div class="button-left">
+                        <button type="button" onclick="showCard(4, 3)">Previous</button>
+                    </div>
+                    <!-- Move the Next button to the right -->
+                    <div class="button-right">
+                        <button type="button" hidden>Next</button>
                     </div>
                 </div>
             </div>

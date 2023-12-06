@@ -6,7 +6,7 @@ const bodyParser = require("body-parser")
 
 let path = require("path");
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const session = require("express-session")
 
@@ -120,31 +120,18 @@ app.set("view engine", "ejs");
         res.render(path.join(__dirname + '/views/survey.ejs'), { isLoggedIn, extraData });
     });
 
-// Survey
-    app.get("/survey2", (req, res) => {
-        // Check if the user is logged in
-        const isLoggedIn = !!req.session.username;
 
-        // Additional data to pass to the view if the user is logged in
-        const extraData = {
-            username: req.session.username,
-            // Add more data as needed
-        };
-
-        // Render the survey.ejs view and pass data
-        res.render(path.join(__dirname + '/views/newsurvey.ejs'), { isLoggedIn, extraData });
+    const knex = require("knex")({
+        client: "pg",
+        connection: {
+            host: process.env.RDS_HOSTNAME || "localhost",
+            user: process.env.RDS_USERNAME || "postgres",
+            password: process.env.RDS_PASSWORD || "postgres",
+            database: process.env.RDS_DB_NAME || "bucket_list",
+            port: process.env.RDS_PORT || 5432,
+            ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
+        }
     });
-
-// const knex = require("knex")({
-//     client: "pg",
-//     connection: {
-//         host: "localhost",
-//         user: "postgres",
-//         password: "postgres",
-//         database: "bucket_list",
-//         port: 5432
-//     }
-// });
 
 // Make sure server is listening
 app.listen(port, () => console.log("I am listening"));
