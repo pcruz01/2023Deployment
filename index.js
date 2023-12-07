@@ -63,14 +63,14 @@ app.set("view engine", "ejs");
         })
         .select()
         .then((users) => {
-          if (users.length > 0) {
-            req.session.username = req.body.username;
-            req.session.user_first_name = users[0].user_first_name;
+            if (users.length > 0) {
+                req.session.username = req.body.username;
+                req.session.user_first_name = users[0].user_first_name;
 
-            res.redirect('/search');
-          } else {
-            res.send('Invalid Credentials or Insufficient Permissions');
-          }
+                res.redirect('/search');
+            } else {
+                res.send('Invalid Credentials or Insufficient Permissions');
+            }
         })
         .catch((error) => {
           console.error('Error querying the database:', error);
