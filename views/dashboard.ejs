@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/circle_logo.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -26,7 +26,20 @@
     <link rel="stylesheet" href="styles/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     <style>
-    </style>
+        .tableau_holder {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+        }
+        .center-container {
+          text-align: center;
+          width: 80%;
+          margin-top: 30rem;
+          /* Adjust the width as needed */
+        }
+      </style>
 </head>
 
 <body>
@@ -44,7 +57,7 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="/">home</a></li>
+                                        <li><a href="/">home</a></li>
                                         <li><a href="/dashboard">Dashboard</a></li>
                                         <li><a href="/community">Community</a></li>
                                         <li><a href="contact.html">Contact</a></li>
@@ -105,24 +118,55 @@
     <!-- header-end -->
 
     
-
-    <!-- about_area_start -->
-    <div class="about_area" style="display:flex; align-items: center; justify-content: center;"></div>
-        
-            <div>
-                <div class='tableauPlaceholder' id='viz1701904712071' style='position: relative'><noscript><a href='#'><img alt='Mental Wellness Relating to Social Media Usage ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;IN&#47;INTEX_Sec1_Group4_Tableau_Dashboard&#47;MentalWellness&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='INTEX_Sec1_Group4_Tableau_Dashboard&#47;MentalWellness' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;IN&#47;INTEX_Sec1_Group4_Tableau_Dashboard&#47;MentalWellness&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1701904712071');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1300px';vizElement.style.height='777px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1300px';vizElement.style.height='777px';} else { vizElement.style.width='100%';vizElement.style.height='1727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-            </div>
-       
+    <div class="tableau_holder">
+        <div class='tableauPlaceholder center-container' id='viz1701986020407'>
+            <noscript><a href='#'><img alt='Mental Wellness Relating to Social Media Usage '
+                  src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W6&#47;W6RHSPXNK&#47;1_rss.png'
+                  style='border: none' /></a></noscript>
+            <object class='tableauViz' style='display:none;'>
+              <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+              <param name='embed_code_version' value='3' />
+              <param name='path' value='shared&#47;W6RHSPXNK' />
+              <param name='toolbar' value='yes' />
+              <param name='static_image'
+                value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W6&#47;W6RHSPXNK&#47;1.png' />
+              <param name='animate_transition' value='yes' />
+              <param name='display_static_image' value='yes' />
+              <param name='display_spinner' value='yes' />
+              <param name='display_overlay' value='yes' />
+              <param name='display_count' value='yes' />
+              <param name='language' value='en-US' />
+            </object>
+          </div>
+          <script type='text/javascript'>
+            var divElement = document.getElementById('viz1701986020407');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            if (divElement.offsetWidth > 800) {
+              vizElement.style.width = '1000px';
+              vizElement.style.height = '777px';
+            } else if (divElement.offsetWidth > 500) {
+              vizElement.style.width = '1000px';
+              vizElement.style.height = '777px';
+            } else {
+              vizElement.style.width = '100%';
+              vizElement.style.height = '1827px';
+            }
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+          </script>
     </div>
+    </div><!-- about_area_start -->
+    
     <!-- about_area_end -->
 
     <!-- offers_area_start -->
-    <div class="offers_area">
+    <div class="offers_area" style="margin-top: 25rem;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="section_title text-center mb-100">
-                        <span>Our Offers</span>
+                        
                         <h3>Ongoing Offers</h3>
                     </div>
                 </div>
