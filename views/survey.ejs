@@ -178,6 +178,16 @@
             margin-left: 10px;
         }
 
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
         @media only screen and (max-width: 768px) {
             body {
                 background-size: auto; /* Adjust as needed */
@@ -206,6 +216,16 @@
             select {
                 width: 100%;
             }
+            .input-typed,
+            select {
+                width: 100%;
+                margin-bottom: 10px; /* Add spacing between inputs */
+            }
+            .card3, .card4, .card5 {
+                width: 200%;
+                left: 100%;
+            }
+
         }
 	  </style>
   </head>
@@ -364,7 +384,7 @@
                     <!-- Centered and stacked questions -->
                     <div class="centered-questions">
                         <div class="input-container">
-                            <label style="width: 450px">What social media platforms do you commonly use?</label>
+                            <label>What social media platforms do you commonly use?</label>
                             <div class="checkbox-container">
                                 <div class="checkbox-group">
                                     <input type="checkbox" id="none" name="socialmedia" value="None">
@@ -388,7 +408,7 @@
             </div>
         </div>
 
-        <div class="card" id="card3" hidden>
+        <div class="card card3" id="card3" hidden>
             <h1>Social Media & Mental Health Survey</h1>
             <div class="card-content">
                 <div class="button-container">
@@ -398,7 +418,7 @@
                     </div>
                     <div class="centered-questions">
                         <div class="input-container">
-                            <label style="width: 450px">What is the average time you spend on social media every day?</label>
+                            <label>What is the average time you spend on social media every day?</label>
                             <div class="checkbox-container">
                                 <div class="radio-group">
                                     <input type="radio" id="lessThan1hr" name="daily_usage" value="Less than an Hour" >
@@ -427,7 +447,7 @@
                             </div>
                         </div>
                         <div class="input-container">
-                            <label style="width: 450px">On a scale of 1 to 5, how often do you get distracted by social media when you are busy?</label>
+                            <label>On a scale of 1 to 5, how often do you get distracted by social media when you are busy?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
                                     <input type="radio" id="rating1" name="distracted_by_sm" value="1" >
@@ -451,7 +471,7 @@
                                 </div>
                             </div>
                         </div><div class="input-container">
-                            <label style="width: 450px">On a scale of 1 to 5, how restless do you feel if you haven't used Social media in a while?</label>
+                            <label>On a scale of 1 to 5, how restless do you feel if you haven't used Social media in a while?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
                                     <input type="radio" id="rating1" name="restlessness" value="1" >
@@ -485,7 +505,7 @@
             </div>
         </div>
 
-        <div class="card" id="card4" hidden>
+        <div class="card card4" id="card4" hidden>
             <h1>Social Media & Mental Health Survey</h1>
             <div class="card-content">
                 <label for=""></label>
@@ -500,7 +520,7 @@
                         
                         
                         <div class="input-container">
-                            <label style="width: 450px">On a scale of 1 to 5, how much are you bothered by worries?</label>
+                            <label>On a scale of 1 to 5, how much are you bothered by worries?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
                                     <input type="radio" id="rating1" name="anxiety_level" value="1" >
@@ -612,7 +632,7 @@
                 </div>
             </div>
         </div>
-        <div class="card" id="card5" hidden>
+        <div class="card card5" id="card5" hidden>
             <h1>Social Media & Mental Health Survey</h1>
             <div class="card-content">
                 <label for=""></label>
