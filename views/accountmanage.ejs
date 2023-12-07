@@ -171,12 +171,11 @@
             </div> 
         <br><br>
         
-        <div id="displayAll" class="table-responsive" style="display: none;">
+        <div id="displayAll" class="table-responsive" style="display: block;">
             <table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm " cellspacing="0"
             width="100%">
                 <thead>
                     <tr>
-                        <th style="text-align: left;" scope="col">#</th>
                         <th style="text-align: left;" scope="col">Username</th>
                         <th style="text-align: left;" scope="col">First Name</th>
                         <th style="text-align: left;" scope="col">Last Name</th>
@@ -186,20 +185,20 @@
                     </tr>
                     </thead>
                     <tbody style="font-family: Arial; font-size: 9pt;">
-                    <% for (let iCount = 1; iCount < userdata.length; iCount++) { %>
+                    <% for (let iCount = 0; iCount < accounts.length; iCount++) { %>
                         <tr>
-                        <td scope="row"><%= userdata[iCount].username %></td>
-                        <td><%= userdata[iCount].user_first_name %></td>
-                        <td><%= userdata[iCount].user_last_name %></td>
-                        <td><%= userdata[iCount].email %></td>
-                        <td><%= userdata[iCount].admin_permission %></td>
+                        <td scope="row"><%= accounts[iCount].username %></td>
+                        <td><%= accounts[iCount].user_first_name %></td>
+                        <td><%= accounts[iCount].user_last_name %></td>
+                        <td><%= accounts[iCount].email %></td>
+                        <td><%= accounts[iCount].admin_permission %></td>
                         
                         </tr>
                     <% } %>
                 </tbody>
             </table>
             <div class="card-footer text-body-secondary">
-                <% userdata.length %> Records Found
+                <% accounts.length %> Records Found
             </div>
         </div>
     </div>
@@ -355,7 +354,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
         });
 
-        let dataString = "<% JSON.stringify(userdata) %>";
+        let dataString = "<% JSON.stringify(accounts) %>";
         // Store the data in sessionStorage
         sessionStorage.setItem('full_dataset', dataString);
 

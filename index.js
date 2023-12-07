@@ -180,6 +180,36 @@ async function get_full_data() {
     }
 }
 
+app.get("/accountmanage", async (req, res) => {
+    // Check if the user is logged in
+    const isLoggedIn = !!req.session.username;
+
+    // Additional data to pass to the view if the user is logged in
+    const extraData = {
+        username: req.session.username,
+        user_first_name: req.session.user_first_name,
+        // Add more data as needed
+    };
+
+    if (req.session.username) {
+        // Get the data from the database
+        const result = await knex.select('*').from('user_login');
+
+
+        // Save the session before continuing
+        req.session.save((err) => {
+            if (err) {
+                console.error("Error saving session:", err);
+                res.status(500).send("Internal Server Error");
+            } else {
+                // Render the search.ejs view and pass data
+                res.render(path.join(__dirname + '/views/accountmanage.ejs'), { isLoggedIn, extraData, accounts: result });
+            }
+        });
+    } else {
+        res.redirect('/login');
+    }
+});
 
 // blog.ejs (community)
     app.get("/community", (req, res) => {
