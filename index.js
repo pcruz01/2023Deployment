@@ -149,18 +149,18 @@ async function get_full_data() {
         .select('pi.*')
         .leftJoin(
             knex
-            .select('eop.entry_id', 'o.organization')
-            .from('entry_organization_platform as eop')
-            .innerJoin('organizations as o', 'eop.organization_id', 'o.organization_id')
+            .select('eo.entry_id', 'o.organization')
+            .from('entry_organization as eo')
+            .innerJoin('organizations as o', 'eo.organization_id', 'o.organization_id')
             .as('organization_list'),
             'pi.entry_id',
             'organization_list.entry_id'
         )
         .leftJoin(
             knex
-            .select('eop.entry_id', 'plat.platform')
-            .from('entry_organization_platform as eop')
-            .innerJoin('platforms as plat', 'eop.platform_id', 'plat.platform_id')
+            .select('ep.entry_id', 'plat.platform')
+            .from('entry_platform as ep')
+            .innerJoin('platforms as plat', 'ep.platform_id', 'plat.platform_id')
             .as('platform_list'),
             'pi.entry_id',
             'platform_list.entry_id'
