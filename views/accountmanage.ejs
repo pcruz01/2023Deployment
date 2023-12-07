@@ -61,6 +61,11 @@
         <![endif]-->
 
     <!-- header-start -->
+    <script>
+        if (submitted) {
+            alert("Changes Submitted Successfully.");
+        } 
+    </script>
     <header>
         <div class="header-area " style="background-color: rgba(0, 0, 0, 0.5); height: 125px;">
             <div id="sticky-header" class="main-header-area">
@@ -154,44 +159,50 @@
                     </div>
                 </div> 
             <br><br>
-            <button class="btn btn-danger" onclick="submitChanges()">Submit Changes</button>
-            <div id="displayAll" class="table-responsive" style="display: block;">
-                <table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm " cellspacing="0"
-                width="100%">
-                    <thead>
-                        <tr>
-                            <th style="text-align: left;" scope="col">Username</th>
-                            <th style="text-align: left;" scope="col">First Name</th>
-                            <th style="text-align: left;" scope="col">Last Name</th>
-                            <th style="text-align: left;" scope="col">Email</th>
-                            <th style="text-align: left;" scope="col">Access Approved</th>
-                            
-                        </tr>
+            <form id="accountForm" action="/accountmanage" method="POST">
+                <button class="btn btn-danger" type="submit">Submit Changes</button>
+                <div id="displayAll" class="table-responsive" style="display: block;">
+                    <table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;" scope="col">Username</th>
+                                <th style="text-align: left;" scope="col">First Name</th>
+                                <th style="text-align: left;" scope="col">Last Name</th>
+                                <th style="text-align: left;" scope="col">Email</th>
+                                <th style="text-align: left;" scope="col">Access Approved</th>
+                            </tr>
                         </thead>
                         <tbody style="font-family: Arial; font-size: 9pt;">
-                        <% for (let iCount = 1; iCount < accounts.length; iCount++) { %>
-                            <tr>
-                            <td scope="row"><%= accounts[iCount].username %></td>
-                            <td><%= accounts[iCount].user_first_name %></td>
-                            <td><%= accounts[iCount].user_first_name %></td>
-                            <td><%= accounts[iCount].email %></td>
-                            <td>
-                                <select name="accessApproved" id="accessApproved<%= iCount %>" class="form-control">
-                                    <option value="true" <%= accounts[iCount].accessApproved ? 'selected' : '' %>>Approved</option>
-                                    <option value="false" <%= !accounts[iCount].accessApproved ? 'selected' : '' %>>Not Approved</option>
-                                </select>
-                            </td>
-                            </tr>
-                        <% } %>
+                            <% for (let iCount = 1; iCount < accounts.length; iCount++) { %>
+                                <tr>
+                                    <td scope="row"><input type="text" class="form-control" id="username<%= iCount %>" name="username" value="<%= accounts[iCount].username %>" readonly></td>
+                                    <td><input type="text" class="form-control" id="firstName<%= iCount %>" name="firstName" value="<%= accounts[iCount].user_first_name %>" readonly></td>
+                                    <td><input type="text" class="form-control" id="lastName<%= iCount %>" name="lastName" value="<%= accounts[iCount].user_last_name %>" readonly></td>
+                                    <td><input type="email" class="form-control" id="email<%= iCount %>" name="email" value="<%= accounts[iCount].email %>" readonly></td>
+                                    <td>
+                                        <select class="form-control" id="accessApproved<%= iCount %>" name="accessApproved">
+                                            <% if (accounts[iCount].admin_permission == true) { %>
+                                                <script>console.log("true")</script>
+                                                <option value="1" selected>Yes</option>
+                                                <option value="0">No</option>
+                                            <% } else { %>
+                                                <script>console.log("false")</script>
+                                                <option value="1">Yes</option>
+                                                <option value="0" selected>No</option>
+                                            <% } %>
+                                        </select>
+                                    </td>
+                                </tr>
+                            <% } %>
                         </tbody>
-                </table>
-                
-            </div>
+                    </table>
+                </div>
+            </form>
 
             <script>
                 function submitChanges() {
                     var tableData = [];
-                    var tableRows = document.querySelectorAll("#dtHorizontalVerticalExample tbody tr");
+                    var tableRows = document.querySelectorAll("dtHorizontalVerticalExample tbody tr");
                     tableRows.forEach(function(row) {
                         var rowData = {
                             username: row.cells[0].innerText,
@@ -199,6 +210,7 @@
                         };
                         tableData.push(rowData);
                     });
+                    console.log(tableData);
                     fetch("/accountmanage", {
                         method: "POST",
                         headers: {
