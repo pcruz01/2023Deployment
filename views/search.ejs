@@ -439,6 +439,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
         
         function searchRecord() {
+
             document.getElementById('displayAll').style.display = 'none';
             document.getElementById('displaySearch').style.display = 'block';
             // Retrieve the object from storage
@@ -449,6 +450,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             //console.log(personinfo[recordNum]);
             
             let tr = document.getElementById("recordDisplayRow");
+            tr.innerHTML = ""; // Remove all elements within the tr tag
+            
             let td = document.createElement("td"); 
             td.innerHTML = personinfo[recordNum].entry_id;
             tr.appendChild(td);

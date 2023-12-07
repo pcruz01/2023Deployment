@@ -46,6 +46,32 @@ app.set("view engine", "ejs");
         res.render(path.join(__dirname + '/views/index.ejs'), { isLoggedIn, extraData });
     });
 
+    app.post("/signup", (req, res) => {
+        console.log("Body: ", req.body);
+        const newUser = {
+            username: req.body.newUsername,
+            password: req.body.newPassword,
+            user_first_name: req.body.firstName,
+            user_last_name: req.body.lastName,
+            email: req.body.email,
+            admin_permission: false // Assuming new users don't have admin permission by default
+        };
+        console.log("New USer: ", newUser);
+
+        knex('user_login')
+            .insert(newUser)
+            .then(() => {
+                res.redirect('/');
+            })
+            .catch((error) => {
+                if (error.routine === "_bt_check_unique") {
+                    res.redirect('/');
+                } else {
+                    console.error('Error inserting new user account:', error);
+                    res.status(500).send('Internal Server Error');
+                }
+            });
+    });
 
 // login.ejs
     app.get("/login", (req, res) => {
@@ -197,6 +223,59 @@ app.get("/accountmanage", async (req, res) => {
         // Get the data from the database
         const result = await knex.select('*').from('user_login');
 
+        
+        // Save the session before continuing
+        req.session.save((err) => {
+            if (err) {
+                console.error("Error saving session:", err);
+                res.status(500).send("Internal Server Error");
+            } else {
+                // Render the search.ejs view and pass data
+                res.render(path.join(__dirname + '/views/accountmanage.ejs'), { isLoggedIn, extraData, accounts: result, submitted: false });
+            }
+        });
+    } else {
+        res.redirect('/login');
+    }
+});
+
+app.post("/accountmanage", async (req, res) => {
+    console.log("Body in post: ", req.body);
+
+    let usernames = Array.isArray(req.body.username) ? req.body.username : [req.body.username];
+    let user_first_names = Array.isArray(req.body.firstName) ? req.body.firstName : [req.body.firstName];
+    let user_last_names = Array.isArray(req.body.lastName) ? req.body.lastName : [req.body.lastName];
+    let emails = Array.isArray(req.body.email) ? req.body.email : [req.body.email];
+    let accessApproved = Array.isArray(req.body.accessApproved) ? req.body.accessApproved : [req.body.accessApproved];
+    // Iterate through the submitted accounts
+    for (let i = 0; i < usernames.length; i++) {
+        const username = usernames[i];
+        const access = accessApproved[i] == 1;
+
+        console.log("Access: ", access, "Token: ", accessApproved[i], "On user: ", username);
+        // Update the user_logins table with the submitted account information
+        await knex('user_login')
+            .where('username', username)
+            .update({
+                admin_permission: access
+            });
+    }
+
+    // res.send("Accounts updated successfully");
+    
+    // Check if the user is logged in
+    const isLoggedIn = !!req.session.username;
+
+    // Additional data to pass to the view if the user is logged in
+    const extraData = {
+        username: req.session.username,
+        user_first_name: req.session.user_first_name,
+        // Add more data as needed
+    };
+
+    if (req.session.username) {
+        // Get the data from the database
+        const result = await knex.select('*').from('user_login');
 
         // Save the session before continuing
         req.session.save((err) => {
@@ -205,7 +284,7 @@ app.get("/accountmanage", async (req, res) => {
                 res.status(500).send("Internal Server Error");
             } else {
                 // Render the search.ejs view and pass data
-                res.render(path.join(__dirname + '/views/accountmanage.ejs'), { isLoggedIn, extraData, accounts: result });
+                res.render(path.join(__dirname + '/views/accountmanage.ejs'), { isLoggedIn, extraData, accounts: result, submitted: true });
             }
         });
     } else {
