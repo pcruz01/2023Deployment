@@ -1,0 +1,374 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin Tools</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/circle_logo.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/owl.carousel.min.css">
+    <link rel="stylesheet" href="styles/magnific-popup.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/themify-icons.css">
+    <link rel="stylesheet" href="styles/nice-select.css">
+    <link rel="stylesheet" href="styles/flaticon.css">
+    <link rel="stylesheet" href="styles/gijgo.css">
+    <link rel="stylesheet" href="styles/animate.css">
+    <link rel="stylesheet" href="styles/slicknav.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <style> 
+        .dtHorizontalVerticalExampleWrapper {
+        max-width: 600px;
+        margin: 0 auto;
+        }
+        #dtHorizontalVerticalExample th, td {
+        white-space: nowrap;
+        }
+        table.dataTable thead .sorting:after,
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:after,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_asc_disabled:after,
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc:after,
+        table.dataTable thead .sorting_desc:before,
+        table.dataTable thead .sorting_desc_disabled:after,
+        table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+        }
+
+        th {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area " style="background-color: rgba(0, 0, 0, 0.5); height: 125px;">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-5 col-lg-6">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="active" href="/">home</a></li>
+                                        <li><a href="/dashboard">Dashboard</a></li>
+                                        <li><a href="/community">Community</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="/">
+                                    <img style="width: 100px;" src="img/circle_logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                            <div class="book_room">
+                                <div>
+                                    <% if (isLoggedIn) { %>
+                                        <p style="color: white; font-size: larger; margin-right: 20px; margin-top: 15px;">Welcome, <%= extraData.username %></p>
+                                    <% } %>
+                                </div>
+                                <div class="socail_links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-facebook-square"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="book_btn d-none d-lg-block">
+                                    <% if (isLoggedIn) { %>
+                                        <a style="font-size: large; border-radius: 5px;" class="login" href="/logout">Sign Out</a>
+                                    <% } else { %>
+                                        <a style="font-size: large; border-radius: 5px;" class="login" href="/login">Admin Log In</a>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- table area -->
+    <div class="video_area overlay" style="padding-top: 150px; background-color:beige;">
+        <div class="card text-center">
+            <div class="card-header">
+              <h3>Administrator Tools</h3>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">View, Delete, and Search the database.<br>
+                    Give Account Approval to add new Administrators</h5>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Display All</h5>
+                                <a class="btn btn-primary text-white" id="displayButton">Display All</a>
+                                <div class="input-group" style="display: flex; justify-content: center; align-items: center;">
+                                    <div class="form-outline" data-mdb-input-init>
+                                      <input type="number" id="recordNumInput" class="form-control" placeholder="Search Record Number" min="0"/>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" onclick="searchRecord()">
+                                        Search
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Account Approval</h5>
+                                <a class="btn btn-primary text-white" id="approvalButton">Account Approval</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        <br><br>
+        
+        <div id="displayAll" class="table-responsive" style="display: none;">
+            <table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm " cellspacing="0"
+            width="100%">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;" scope="col">#</th>
+                        <th style="text-align: left;" scope="col">Username</th>
+                        <th style="text-align: left;" scope="col">First Name</th>
+                        <th style="text-align: left;" scope="col">Last Name</th>
+                        <th style="text-align: left;" scope="col">Email</th>
+                        <th style="text-align: left;" scope="col">Access Approved</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody style="font-family: Arial; font-size: 9pt;">
+                    <% for (let iCount = 1; iCount < userdata.length; iCount++) { %>
+                        <tr>
+                        <td scope="row"><%= userdata[iCount].username %></td>
+                        <td><%= userdata[iCount].user_first_name %></td>
+                        <td><%= userdata[iCount].user_last_name %></td>
+                        <td><%= userdata[iCount].email %></td>
+                        <td><%= userdata[iCount].admin_permission %></td>
+                        
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <div class="card-footer text-body-secondary">
+                <% userdata.length() %> Records Found
+            </div>
+        </div>
+    </div>
+    <!-- video_area_end -->
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                address
+                            </h3>
+                            <p class="footer_text"> 445 W Center St, Provo <br>
+                                Utah USA</p>
+                            <a href="#" class="line-button">Get Direction</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Contact Us
+                            </h3>
+                            <p class="footer_text">(801) 852-6000 <br>
+                                provotownhall@provo.com</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Navigation
+                            </h3>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Rooms</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">News</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Newsletter
+                            </h3>
+                            <form action="#" class="newsletter_form">
+                                <input type="text" placeholder="Enter your mail">
+                                <button type="submit">Sign Up</button>
+                            </form>
+                            <p class="newsletter_text">Subscribe newsletter to get updates</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-8 col-md-7 col-lg-9">
+                        <p class="copy_right">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="col-xl-4 col-md-5 col-lg-3">
+                        <div class="socail_links">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook-square"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JS here -->
+    <script src="scripts/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="scripts/vendor/jquery-1.12.4.min.js"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/owl.carousel.min.js"></script>
+    <script src="scripts/isotope.pkgd.min.js"></script>
+    <script src="scripts/ajax-form.js"></script>
+    <script src="scripts/waypoints.min.js"></script>
+    <script src="scripts/jquery.counterup.min.js"></script>
+    <script src="scripts/imagesloaded.pkgd.min.js"></script>
+    <script src="scripts/scrollIt.js"></script>
+    <script src="scripts/jquery.scrollUp.min.js"></script>
+    <script src="scripts/wow.min.js"></script>
+    <script src="scripts/nice-select.min.js"></script>
+    <script src="scripts/jquery.slicknav.min.js"></script>
+    <script src="scripts/jquery.magnific-popup.min.js"></script>
+    <script src="scripts/plugins.js"></script>
+    <script src="scripts/gijgo.min.js"></script>
+
+    <!--contact js-->
+    <script src="scripts/contact.js"></script>
+    <script src="scripts/jquery.ajaxchimp.min.js"></script>
+    <script src="scripts/jquery.form.js"></script>
+    <script src="scripts/jquery.validate.min.js"></script>
+    <script src="scripts/mail-script.js"></script>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            const table = $('#dtHorizontalVerticalExample').DataTable({
+            "scrollX": true,
+            "scrollY": 200,
+            });
+
+            // Add hover event to cells
+            $('#dtHorizontalVerticalExample tbody').on('mouseenter', 'td', function () {
+            const colIdx = table.cell(this).index().column;
+            const rowIdx = table.cell(this).index().row;
+
+            // Display column name and row number in a tooltip
+            $(this).attr('title', `Column: ${table.columns(colIdx).header().text()}, Row: ${rowIdx + 1}`);
+            });
+
+            $('.dataTables_length').addClass('bs-select');
+        });
+
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+
+        });
+
+        let dataString = "<% JSON.stringify(userdata) %>";
+        // Store the data in sessionStorage
+        sessionStorage.setItem('full_dataset', dataString);
+
+        
+        document.getElementById('displayButton').addEventListener('click', function() {
+            document.getElementById('displayAll').style.display = 'block';
+        });
+        
+        
+    </script>
+
+
+
+</body>
+
+</html>
