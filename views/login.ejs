@@ -36,64 +36,35 @@
               <input type="password" placeholder="Password" name="password"/>
             </div>
             <input type="submit" value="Login" class="btn solid"/>
-            <p class="social-text">Or Sign in with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
           </form>
-          <form action="#" class="sign-up-form">
+
+          <form action="/signup" method="post" class="sign-up-form">
             <h2 class="title">Request account</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="First Name" />
+              <input type="text" placeholder="First Name" id="firstName" name="firstName"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Last Name" />
+              <input type="text" placeholder="Last Name" id="lastName" name="lastName"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username" id="newUsername" name="newUsername"/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" id="email" name="email"/>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input required="required" type="password" placeholder="Password" id="newPassword" name="newPassword" oninput="check()"/>
             </div>
             <div class="input-field">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Confirm Password" />
+              <i class="fas fa-lock"></i>
+              <input required="required" type="password" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword" oninput="check()" />
             </div>
             <input type="submit" class="btn" value="Request account" style="width: 175px;"/>
-            <p class="social-text">Or Sign up with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
           </form>
         </div>
       </div>
@@ -103,8 +74,7 @@
           <div class="content" style="margin-bottom: 400px;">
             <h3>Need access?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
+              Click here to fill out the request form to get access.
             </p>
             <button class="btn transparent" id="sign-up-btn" style="width: 175px;">
               Request account
@@ -127,5 +97,17 @@
     </div>
 
     <script src="/scripts/app.js"></script>
+    <script>
+
+      function check() {
+          var input = document.getElementById('confirmPassword');
+          if (input.value != document.getElementById('password').value) {
+              input.setCustomValidity('Password Must be Matching.');
+          } else {
+              // input is valid -- reset the error message
+              input.setCustomValidity('');
+          }
+      }
+    </script>
   </body>
 </html>

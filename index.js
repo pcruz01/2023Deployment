@@ -44,6 +44,32 @@ app.set("view engine", "ejs");
         res.render(path.join(__dirname + '/views/index.ejs'), { isLoggedIn, extraData });
     });
 
+    app.post("/signup", (req, res) => {
+        console.log("Body: ", req.body);
+        const newUser = {
+            username: req.body.newUsername,
+            password: req.body.newPassword,
+            user_first_name: req.body.firstName,
+            user_last_name: req.body.lastName,
+            email: req.body.email,
+            admin_permission: false // Assuming new users don't have admin permission by default
+        };
+        console.log("New USer: ", newUser);
+
+        knex('user_login')
+            .insert(newUser)
+            .then(() => {
+                res.redirect('/');
+            })
+            .catch((error) => {
+                if (error.routine === "_bt_check_unique") {
+                    res.redirect('/');
+                } else {
+                    console.error('Error inserting new user account:', error);
+                    res.status(500).send('Internal Server Error');
+                }
+            });
+    });
 
 // login.ejs
     app.get("/login", (req, res) => {
