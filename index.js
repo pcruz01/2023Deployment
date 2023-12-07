@@ -63,12 +63,29 @@ app.set("view engine", "ejs");
             })
             .catch((error) => {
                 if (error.routine === "_bt_check_unique") {
-                    res.redirect('/');
+                    res.redirect('/username');
                 } else {
                     console.error('Error inserting new user account:', error);
                     res.status(500).send('Internal Server Error');
                 }
             });
+            
+    });
+
+    // username.ejs
+    app.get("/username", (req, res) => {
+
+        const isLoggedIn = !!req.session.username;
+
+        const extraData = {
+            username: req.session.username,
+            user_first_name: req.session.user_first_name,
+            // Add more data as needed
+        };
+
+
+        // Render the username.ejs view
+        res.render(path.join(__dirname + '/views/username.ejs'), { isLoggedIn, extraData });
     });
 
 // login.ejs
