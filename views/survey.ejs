@@ -282,7 +282,7 @@
       </div>
   </header>
 
-  <form id="surveyForm" action="" method="">
+<form id="surveyForm" action="/survey" method="post">
     <div class="container">
         <div class="card" id="card1">
             <h1>Social Media & Mental Health Survey</h1>
@@ -298,11 +298,11 @@
                     <div class="centered-questions" style="margin-left: 60px;">
                         <div class="input-container">
                             <label for="age">Age</label>
-                            <input class="input-typed" type="number" id="age" name="age" min="0" required>
+                            <input class="input-typed" type="number" id="age" name="age" min="0">
                         </div>                        
                         <div class="input-container">
                             <label for="gender">Gender</label>
-                            <select id="gender" name="gender" required>
+                            <select id="gender" name="gender" >
                                 <option value="">-- Select Gender --</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -311,7 +311,7 @@
                         </div>
                         <div class="input-container">
                             <label for="rel_status">Relationship Status</label>
-                            <select id="rel_status" name="relationship_status" required>
+                            <select id="rel_status" name="relationship_status" >
                                 <option value="">-- Select Status --</option>
                                 <option value="Single">Single</option>
                                 <option value="In a relationship">In a Relationship</option>
@@ -321,7 +321,7 @@
                         </div>
                         <div class="input-container">
                             <label for="occ_status">Occupation Status</label>
-                            <select id="occ_status" name="occupation_status" required>
+                            <select id="occ_status" name="occupation_status" >
                                 <option value="">-- Select Status --</option>
                                 <option value="University Student">University Student</option>
                                 <option value="School Student">School Student</option>
@@ -334,7 +334,7 @@
                             <div class="checkbox-container">
                                 <% for (let iCount = 0; iCount < myorganization.length; iCount++) { %>
                                     <div class="checkbox-group">
-                                        <input type="checkbox" id="<%= myorganization[iCount].organization %>" name="organization" value="<%= myorganization[iCount].organization %>">
+                                        <input type="checkbox" id="<%= myorganization[iCount].organization %>" name="organization" value="<%= myorganization[iCount].organization_id %>" >
                                         <label for="<%= myorganization[iCount].organization %>"><%= myorganization[iCount].organization %></label>
                                     </div>
                                 <% } %>   
@@ -372,7 +372,7 @@
                                 </div>
                                 <% for (let iCount = 0; iCount < myplatform.length; iCount++) { %>
                                     <div class="checkbox-group">
-                                        <input type="checkbox" id="<%= myplatform[iCount].platform_id %>" name="socialmedia" value="<%= myplatform[iCount].platform %>">
+                                        <input type="checkbox" id="<%= myplatform[iCount].platform_id %>" name="socialmedia" value="<%= myplatform[iCount].platform_id %>" >
                                         <label for="<%= myplatform[iCount].platform_id %>"><%= myplatform[iCount].platform %></label>
                                     </div>
                                 <% } %>                                
@@ -401,7 +401,7 @@
                             <label style="width: 450px">What is the average time you spend on social media every day?</label>
                             <div class="checkbox-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="lessThan1hr" name="daily_usage" value="Less than an Hour">
+                                    <input type="radio" id="lessThan1hr" name="daily_usage" value="Less than an Hour" >
                                     <label for="lessThan1hr">Less than 1 hr</label>
                                 </div>
                                 <div class="radio-group">
@@ -430,7 +430,7 @@
                             <label style="width: 450px">On a scale of 1 to 5, how often do you get distracted by social media when you are busy?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="distracted_by_sm" value="1">
+                                    <input type="radio" id="rating1" name="distracted_by_sm" value="1" >
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
@@ -454,7 +454,7 @@
                             <label style="width: 450px">On a scale of 1 to 5, how restless do you feel if you haven't used Social media in a while?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="restlessness" value="1">
+                                    <input type="radio" id="rating1" name="restlessness" value="1" >
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
@@ -503,7 +503,7 @@
                             <label style="width: 450px">On a scale of 1 to 5, how much are you bothered by worries?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="anxiety_level" value="1">
+                                    <input type="radio" id="rating1" name="anxiety_level" value="1" >
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
@@ -530,23 +530,23 @@
                             <label style="width: 450px">On a scale of 1 to 5, how difficult do you find it to concentrate on things?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="concentration_difficulty_level" value="1">
+                                    <input type="radio" id="rating1" name="concetration_difficulty_level" value="1" >
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
-                                    <input type="radio" id="rating2" name="concentration_difficulty_level" value="2">
+                                    <input type="radio" id="rating2" name="concetration_difficulty_level" value="2">
                                     <label for="rating2">2</label>
                                 </div>
                                 <div class="radio-group">
-                                    <input type="radio" id="rating3" name="concentration_difficulty_level" value="3">
+                                    <input type="radio" id="rating3" name="concetration_difficulty_level" value="3">
                                     <label for="rating3">3</label>
                                 </div>
                                 <div class="radio-group">
-                                    <input type="radio" id="rating4" name="concentration_difficulty_level" value="4">
+                                    <input type="radio" id="rating4" name="concetration_difficulty_level" value="4">
                                     <label for="rating4">4</label>
                                 </div>
                                 <div class="radio-group">
-                                    <input type="radio" id="rating5" name="concentration_difficulty_level" value="5">
+                                    <input type="radio" id="rating5" name="concetration_difficulty_level" value="5">
                                     <label for="rating5">5</label>
                                 </div>
                             </div>
@@ -556,7 +556,7 @@
                             <label style="width: 450px">On a scale of 1-5, how often do you negatively compare yourself to others through the use of social media?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="negative_comparison" value="1">
+                                    <input type="radio" id="rating1" name="negative_comparison" value="1" >
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
@@ -582,7 +582,7 @@
                             <label style="width: 450px">On a scale of 1 to 5, how often do you look to seek validation from features of social media?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="self_validation_level" value="1">
+                                    <input type="radio" id="rating1" name="self_validation_level" value="1" >
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
@@ -630,7 +630,7 @@
                             <label style="width: 450px">On a scale of 1 to 5, how often do you feel depressed or down?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="depressed_level" value="1">
+                                    <input type="radio" id="rating1" name="depressed_level" value="1" >
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
@@ -656,23 +656,23 @@
                             <label style="width: 450px">On a scale of 1 to 5, how frequently does your interest in daily activities fluctuate?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="fluctuation_interest_in_activities" value="1">
+                                    <input type="radio" id="rating1" name="fluctuation_interest_in_activites" value="1" >
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
-                                    <input type="radio" id="rating2" name="fluctuation_interest_in_activities" value="2">
+                                    <input type="radio" id="rating2" name="fluctuation_interest_in_activites" value="2">
                                     <label for="rating2">2</label>
                                 </div>
                                 <div class="radio-group">
-                                    <input type="radio" id="rating3" name="fluctuation_interest_in_activities" value="3">
+                                    <input type="radio" id="rating3" name="fluctuation_interest_in_activites" value="3">
                                     <label for="rating3">3</label>
                                 </div>
                                 <div class="radio-group">
-                                    <input type="radio" id="rating4" name="fluctuation_interest_in_activities" value="4">
+                                    <input type="radio" id="rating4" name="fluctuation_interest_in_activites" value="4">
                                     <label for="rating4">4</label>
                                 </div>
                                 <div class="radio-group">
-                                    <input type="radio" id="rating5" name="fluctuation_interest_in_activities" value="5">
+                                    <input type="radio" id="rating5" name="fluctuation_interest_in_activites" value="5">
                                     <label for="rating5">5</label>
                                 </div>
                             </div>
@@ -682,7 +682,7 @@
                             <label style="width: 450px">On a scale of 1 to 5, how often do you face issues regarding sleep?</label>
                             <div class="radio-container">
                                 <div class="radio-group">
-                                    <input type="radio" id="rating1" name="sleep_issue_level" value="1">
+                                    <input type="radio" id="rating1" name="sleep_issue_level" value="1" require>
                                     <label for="rating1">1</label>
                                 </div>
                                 <div class="radio-group">
@@ -704,6 +704,32 @@
                             </div>
                         </div>
 
+                        <div class="input-container">
+                            <label style="width: 450px">On a scale of 1-5, how often do you find yourself on social media without a purpose?</label>
+                            <div class="radio-container">
+                                <div class="radio-group">
+                                    <input type="radio" id="rating1" name="no_purpose_usage" value="1" require>
+                                    <label for="rating1">1</label>
+                                </div>
+                                <div class="radio-group">
+                                    <input type="radio" id="rating2" name="no_purpose_usage" value="2">
+                                    <label for="rating2">2</label>
+                                </div>
+                                <div class="radio-group">
+                                    <input type="radio" id="rating3" name="no_purpose_usage" value="3">
+                                    <label for="rating3">3</label>
+                                </div>
+                                <div class="radio-group">
+                                    <input type="radio" id="rating4" name="no_purpose_usage" value="4">
+                                    <label for="rating4">4</label>
+                                </div>
+                                <div class="radio-group">
+                                    <input type="radio" id="rating5" name="no_purpose_usage" value="5">
+                                    <label for="rating5">5</label>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
         
                     <!-- Move the Next button to the right -->
@@ -715,48 +741,30 @@
         </div>
 
 
-    </div>
-
-    <div class="card" id="card6" hidden>
-        <h1>Social Media & Mental Health Survey</h1>
-        <h2 style="margin-top: 150px;">Ready to submit answers?</h2>
-        <div class="card-content">
-            <label for=""></label>
-            <div class="button-container">
-                <!-- Move the Previous button to the left -->
-                <div class="button-left" style="margin-top: 250px;">
-                    <button type="button" onclick="showCard(6, 5)">Previous</button>
+        <div class="card" id="card6" hidden>
+            <h1>Social Media & Mental Health Survey</h1>
+            <h2 style="margin-top: 150px;">Ready to submit answers?</h2>
+            <div class="card-content">
+                <label for=""></label>
+                <div class="button-container">
+                    <!-- Move the Previous button to the left -->
+                    <div class="button-left" style="margin-top: 250px;">
+                        <button type="button" onclick="showCard(6, 5)">Previous</button>
+                    </div>
                 </div>
-            </div>
-            <!-- Centered and stacked questions -->
-            <div class="centered-questions" style="text-align: center; margin-top: 200px;">
-                <button type="button" onclick="showSubmittedInfo()">Submit</button>
+                <!-- Centered and stacked questions -->
+                <div class="centered-questions" style="text-align: center; margin-top: 200px;">
+                    <button type="submit">Submit</button>
+                </div>
             </div>
         </div>
     </div>
-
-
-    </div>
-  </form>
+</form>
 
 <!-- End Survey -->
   </body>
 
-<script>
-    function showSubmittedInfo() {
-        // Get form data
-        const form = document.getElementById("surveyForm");
-        const formData = new FormData(form);
-        
-        // Display submitted information (modify as needed)
-        let submittedInfo = "Submitted Information:\n";
-        formData.forEach((value, key) => {
-            submittedInfo += `${key}: ${value}\n`;
-        });
-
-        alert(submittedInfo);
-    }
-
+  <script>
     function showCard(n1, n2) {
         let current = "card" + n1;
         let desired = "card" + n2;
@@ -767,6 +775,23 @@
         // Remove "hidden" for the desired card
         document.getElementById(desired).removeAttribute("hidden");
     }
+
+    function unhideAllCards() {
+        // Get all cards and remove the "hidden" attribute
+        const allCards = document.querySelectorAll('.card');
+        allCards.forEach(card => {
+            card.removeAttribute("hidden");
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add click event listener to the submit button
+        const submitButton = document.querySelector('button[type="submit"]');
+        submitButton.addEventListener('click', function (event) {
+            // Unhide all cards before submitting the form
+            unhideAllCards();
+        });
+    });
 
     // Add event listener to the "None" checkbox
     document.getElementById('none').addEventListener('change', function () {
@@ -788,5 +813,6 @@
         }
     });
 </script>
+
 
 </html>

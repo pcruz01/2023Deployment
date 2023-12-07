@@ -4,6 +4,8 @@ const app = express();
 
 const bodyParser = require("body-parser")
 
+app.use(bodyParser.json()); // Parse JSON data
+
 let path = require("path");
 
 const port = process.env.PORT || 3000;
@@ -350,14 +352,60 @@ app.post("/accountmanage", async (req, res) => {
         });        
     });
 
+    app.post("/survey", async (req, res) => {
+        const formData = req.body;
+        const currentTime = new Date();
+        const city = 'Provo';
+    
+        try {
+            // Insert into person_info table
+            const [response] = await knex('person_info').insert({
+                time_entry: currentTime,
+                // ... other fields ...
+                city: city
+            }).returning('entry_id');
+    
+            console.log('Insert successful:', response);
+    
+            // Find and set the max entry_id
+            const { maxEntryId } = await knex('person_info').max('entry_id as maxEntryId').first();
+            const entryId = maxEntryId || 0;
+    
+            console.log(`Max entry_id is ${entryId}`);
+    
+            // Insert into the organizations table
+            for (const orgId of formData.organization || []) {
+                await knex('entry_organization').insert({
+                    entry_id: entryId,
+                    organization_id: orgId
+                });
+            }
+    
+            // Insert into the platforms table
+            for (const platformId of formData.socialmedia || []) {
+                await knex('entry_platform').insert({
+                    entry_id: entryId,
+                    platform_id: platformId
+                });
+            }
+    
+            console.log('All insertions successful');
+            res.redirect('/dashboard');
+        } catch (error) {
+            console.error('Error inserting data:', error);
+            res.status(500).json({ success: false, message: 'Error recording survey response.' });
+        }
+    });
+    
+
 
     const knex = require("knex")({
         client: "pg",
         connection: {
             host: process.env.RDS_HOSTNAME || "localhost",
             user: process.env.RDS_USERNAME || "postgres",
-            password: process.env.RDS_PASSWORD || "IS403BYU",
-            database: process.env.RDS_DB_NAME || "Provo_Mental_Health_Survey",
+            password: process.env.RDS_PASSWORD || "IAmElonMuskrat",
+            database: process.env.RDS_DB_NAME || "provomentalhealthsurvey",
             port: process.env.RDS_PORT || 5432,
             ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
         }
