@@ -404,8 +404,8 @@ app.post("/accountmanage", async (req, res) => {
         connection: {
             host: process.env.RDS_HOSTNAME || "localhost",
             user: process.env.RDS_USERNAME || "postgres",
-            password: process.env.RDS_PASSWORD || "IAmElonMuskrat",
-            database: process.env.RDS_DB_NAME || "provomentalhealthsurvey",
+            password: process.env.RDS_PASSWORD || "IS403BYU",
+            database: process.env.RDS_DB_NAME || "Provo_Mental_Health_Survey",
             port: process.env.RDS_PORT || 5432,
             ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
         }
