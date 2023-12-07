@@ -81,7 +81,18 @@ app.set("view engine", "ejs");
 
 // dashboard.ejs
     app.get("/dashboard", (req, res) => {
-        res.render(path.join(__dirname + '/views/dashboard.ejs'));
+        // Check if the user is logged in
+        const isLoggedIn = !!req.session.username;
+
+        // Additional data to pass to the view if the user is logged in
+        const extraData = {
+            username: req.session.username,
+            // Add more data as needed
+        };
+
+        // Render the index.ejs view and pass data
+        
+        res.render(path.join(__dirname + '/views/dashboard.ejs'), { isLoggedIn, extraData });
     });
 
 // search.ejs
