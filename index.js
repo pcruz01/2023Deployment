@@ -372,12 +372,28 @@ app.post("/accountmanage", async (req, res) => {
         const formData = req.body;
         const currentTime = new Date();
         const city = 'Provo';
+
+        console.log(formData)
     
         try {
             // Insert into person_info table
             const [response] = await knex('person_info').insert({
                 time_entry: currentTime,
-                // ... other fields ...
+                age: formData.age,
+                gender: formData.gender,
+                relationship_status: formData.relationship_status,
+                occupation_status: formData.occupation_status,
+                daily_usage: formData.daily_usage,
+                no_purpose_usage: formData.no_purpose_usage,
+                distracted_by_sm: formData.distracted_by_sm,
+                restlessness: formData.restlessness,
+                anxiety_level: formData.anxiety_level,
+                concetration_difficulty_level: formData.concetration_difficulty_level,
+                negative_comparison: formData.negative_comparison,
+                self_validation_level: formData.self_validation_level,
+                depressed_level: formData.depressed_level,
+                fluctuation_interest_in_activites: formData.fluctuation_interest_in_activites,
+                sleep_issue_level: formData.sleep_issue_level,
                 city: city
             }).returning('entry_id');
     
@@ -420,8 +436,8 @@ app.post("/accountmanage", async (req, res) => {
         connection: {
             host: process.env.RDS_HOSTNAME || "localhost",
             user: process.env.RDS_USERNAME || "postgres",
-            password: process.env.RDS_PASSWORD || "IS403BYU",
-            database: process.env.RDS_DB_NAME || "Provo_Mental_Health_Survey",
+            password: process.env.RDS_PASSWORD || "IAmElonMuskrat",
+            database: process.env.RDS_DB_NAME || "provomentalhealthsurvey",
             port: process.env.RDS_PORT || 5432,
             ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
         }
