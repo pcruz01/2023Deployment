@@ -326,7 +326,7 @@ app.post("/accountmanage", async (req, res) => {
 });
 
 // blog.ejs (community)
-    app.get("/community", (req, res) => {
+    app.get("/resources", (req, res) => {
         // Check if the user is logged in
         const isLoggedIn = !!req.session.username;
 
@@ -338,7 +338,7 @@ app.post("/accountmanage", async (req, res) => {
         };
 
         // Render the blog.ejs view and pass data
-        res.render(path.join(__dirname + '/views/blog.ejs'), { isLoggedIn, extraData });
+        res.render(path.join(__dirname + '/views/resources.ejs'), { isLoggedIn, extraData });
     });
 
 // Survey
@@ -420,8 +420,8 @@ app.post("/accountmanage", async (req, res) => {
         connection: {
             host: process.env.RDS_HOSTNAME || "localhost",
             user: process.env.RDS_USERNAME || "postgres",
-            password: process.env.RDS_PASSWORD || "IAmElonMuskrat",
-            database: process.env.RDS_DB_NAME || "provomentalhealthsurvey",
+            password: process.env.RDS_PASSWORD || "IS403BYU",
+            database: process.env.RDS_DB_NAME || "Provo_Mental_Health_Survey",
             port: process.env.RDS_PORT || 5432,
             ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
         }
