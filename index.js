@@ -352,7 +352,7 @@ app.post("/accountmanage", async (req, res) => {
             user_first_name: req.session.user_first_name,
             // Add more data as needed
         };
-
+        
         
         knex.select().from("platforms").then(platforms => {
 
@@ -436,8 +436,8 @@ app.post("/accountmanage", async (req, res) => {
         connection: {
             host: process.env.RDS_HOSTNAME || "localhost",
             user: process.env.RDS_USERNAME || "postgres",
-            password: process.env.RDS_PASSWORD || "IAmElonMuskrat",
-            database: process.env.RDS_DB_NAME || "provomentalhealthsurvey",
+            password: process.env.RDS_PASSWORD || "IAmElonMuskrat" || "IS403BYU",
+            database: process.env.RDS_DB_NAME || "provomentalhealthsurvey" || "Provo_Mental_Health_Survey",
             port: process.env.RDS_PORT || 5432,
             ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
         }
