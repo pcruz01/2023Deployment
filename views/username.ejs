@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="img/circle_logo.png">
@@ -18,34 +19,37 @@
     <link rel="stylesheet" href="styles/slicknav.css">
     <link rel="stylesheet" href="styles/style.css">
     <script src="/scripts/survey.js" defer></script>
-	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <style>
-		body {
+        body {
             background-image: url('img/banner/banner2.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-		}
-  
-		header {
-		  position: fixed;
-		  top: 0;
-		  left: 0;
-		  width: 100%;
-		  z-index: 1000; /* Ensure the header is above other content */
-		}
-  
-		.container {
-		  margin-top: 125px; /* Adjust this value based on the header height */
-		  margin-right: 0;
-		  margin-left: 0;
-		  width: 1000px;
-		  max-width: none;
-		}
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            /* Ensure the header is above other content */
+        }
+
+        .container {
+            margin-top: 125px;
+            /* Adjust this value based on the header height */
+            margin-right: 0;
+            margin-left: 0;
+            width: 1000px;
+            max-width: none;
+        }
 
         .card-content {
             display: flex;
-            flex-direction: column; /* Adjust to a column layout */
+            flex-direction: column;
+            /* Adjust to a column layout */
             align-items: center;
             justify-content: space-between;
             position: absolute;
@@ -58,14 +62,16 @@
         .centered-questions {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center the questions horizontally */
+            align-items: center;
+            /* Center the questions horizontally */
             text-align: center;
             margin-top: 20px;
         }
 
-		.arrow-icon {
-			font-size: 24px; /* Adjust the size as needed */
-		}
+        .arrow-icon {
+            font-size: 24px;
+            /* Adjust the size as needed */
+        }
 
         .card {
             margin-top: 50px;
@@ -130,7 +136,8 @@
         .input-container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Align items to the left */
+            align-items: flex-start;
+            /* Align items to the left */
             margin-bottom: 10px;
             width: 450px;
         }
@@ -141,16 +148,19 @@
 
         .checkbox-container {
             display: flex;
-            flex-direction: column; /* Ensure checkboxes are in a row */
+            flex-direction: column;
+            /* Ensure checkboxes are in a row */
             align-items: flex-start;
         }
 
         .checkbox-group {
-            margin-right: 20px; /* Adjust the spacing between checkboxes and labels */
+            margin-right: 20px;
+            /* Adjust the spacing between checkboxes and labels */
         }
 
         label {
-            margin-bottom: 5px; /* Optional: Adjust the space between label and input */
+            margin-bottom: 5px;
+            /* Optional: Adjust the space between label and input */
             color: black;
             font-size: large;
             font-weight: 600;
@@ -161,43 +171,53 @@
         }
 
         input[type="checkbox"] {
-        /* Your styles for checkbox inputs */
-        margin-left: 10px; /* Adjust spacing between checkbox and label */
-        /* Add more styles as needed */
+            /* Your styles for checkbox inputs */
+            margin-left: 10px;
+            /* Adjust spacing between checkbox and label */
+            /* Add more styles as needed */
         }
 
         .radio-container {
             display: flex;
-            flex-direction: row; /* Display radio buttons and labels in a row */
-            align-items: center; /* Center items vertically */
+            flex-direction: row;
+            /* Display radio buttons and labels in a row */
+            align-items: center;
+            /* Center items vertically */
             width: 450px;
             justify-content: center;
         }
 
         .radio-group {
-            margin-right: 10px; /* Adjust the spacing between radio buttons */
+            margin-right: 10px;
+            /* Adjust the spacing between radio buttons */
             margin-left: 10px;
         }
 
         @media only screen and (max-width: 768px) {
             body {
-                background-size: auto; /* Adjust as needed */
+                background-size: auto;
+                /* Adjust as needed */
             }
 
             .container {
-                margin-top: 50px; /* Adjust as needed */
+                margin-top: 50px;
+                /* Adjust as needed */
                 width: 100%;
                 max-width: none;
             }
 
             .card {
-                height: 70%; /* Adjust as needed */
-                width: 90%; /* Adjust as needed */
-                margin-top: 10vh; /* Adjust as needed */
+                height: 70%;
+                /* Adjust as needed */
+                width: 90%;
+                /* Adjust as needed */
+                margin-top: 10vh;
+                /* Adjust as needed */
             }
 
             h1 {
-                font-size: 3vh; /* Adjust as needed */
+                font-size: 3vh;
+                /* Adjust as needed */
             }
 
             .input-container {
@@ -208,89 +228,95 @@
                 width: 100%;
             }
         }
-	  </style>
-  </head>
-  
-  <body>
+    </style>
+</head>
+
+<body>
     <!-- header-start -->
     <header>
-      <div class="header-area " style="background-color: rgba(0, 0, 0, 0.5); height: 125px;">
-          <div id="sticky-header" class="main-header-area">
-              <div class="container-fluid p-0">
-                  <div class="row align-items-center no-gutters">
-                      <div class="col-xl-5 col-lg-6">
-                          <div class="main-menu  d-none d-lg-block">
-                              <nav>
-                                  <ul id="navigation">
+        <div class="header-area " style="background-color: rgba(0, 0, 0, 0.5); height: 125px;">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-5 col-lg-6">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
                                         <li><a class="active" href="/">home</a></li>
                                         <li><a href="/dashboard">Dashboard</a></li>
                                         <li><a href="/community">Community</a></li>
                                         <li><a href="contact.html">Contact</a></li>
-                                  </ul>
-                              </nav>
-                          </div>
-                      </div>
-                      <div class="col-xl-2 col-lg-2">
-                          <div class="logo-img">
-                              <a href="/">
-                                  <img style="width: 100px;" src="img/circle_logo.png" alt="">
-                              </a>
-                          </div>
-                      </div>
-                      <div class="col-xl-5 col-lg-4 d-none d-lg-block">
-                          <div class="book_room">
-                            <div>
-                                <% if (isLoggedIn) { %>
-                                    <p style="color: white; font-size: larger; margin-right: 20px; margin-top: 15px;">Welcome, <%= extraData.user_first_name %></p>
-                                <% } %>
+                                    </ul>
+                                </nav>
                             </div>
-                              <div class="socail_links">
-                                  <ul>
-                                      <li>
-                                          <a href="#">
-                                              <i class="fa fa-facebook-square"></i>
-                                          </a>
-                                      </li>
-                                      <li>
-                                          <a href="#">
-                                              <i class="fa fa-twitter"></i>
-                                          </a>
-                                      </li>
-                                      <li>
-                                          <a href="#">
-                                              <i class="fa fa-instagram"></i>
-                                          </a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <div class="book_btn d-none d-lg-block">
-                                  <% if (isLoggedIn) { %>
-                                      <a style="font-size: large; border-radius: 5px;" class="login" href="/logout">Sign Out</a>
-                                  <% } else { %>
-                                      <a style="font-size: large; border-radius: 5px;" class="login" href="/login">Sign In | Sign Up</a>
-                                  <% } %>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-12">
-                          <div class="mobile_menu d-block d-lg-none"></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </header>
+                        </div>
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="/">
+                                    <img style="width: 100px;" src="img/ProvoLogo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                            <div class="book_room">
+                                <div>
+                                    <% if (isLoggedIn) { %>
+                                        <p
+                                            style="color: white; font-size: larger; margin-right: 20px; margin-top: 15px;">
+                                            Welcome, <%= extraData.user_first_name %>
+                                        </p>
+                                        <% } %>
+                                </div>
+                                <div class="socail_links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-facebook-square"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="book_btn d-none d-lg-block">
+                                    <% if (isLoggedIn) { %>
+                                        <a style="font-size: large; border-radius: 5px;" class="login"
+                                            href="/logout">Sign Out</a>
+                                        <% } else { %>
+                                            <a style="font-size: large; border-radius: 5px;" class="login"
+                                                href="/login">Sign In | Sign Up</a>
+                                            <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <div class="about-section">
         <div class="card">
-        <div class="card-content">
-            <h3 style="color: black; font-size: 30px; font-weight: 600;">That username is unavailable for use</h3>
+            <div class="card-content">
+                <h3 style="color: black; font-size: 30px; font-weight: 600;">That username is unavailable for use</h3>
+            </div>
         </div>
-        </div>
-        
+
     </div>
 
 
-<!-- End Survey -->
-  </body>
+    <!-- End Survey -->
+</body>
+
 </html>

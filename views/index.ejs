@@ -55,7 +55,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="/">
-                                    <img style="width: 100px;" src="img/circle_logo.png" alt="">
+                                    <img style="width: 100px;" src="img/ProvoLogo.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -63,8 +63,11 @@
                             <div class="book_room">
                                 <div>
                                     <% if (isLoggedIn) { %>
-                                        <p style="color: white; font-size: larger; margin-right: 20px; margin-top: 15px;">Welcome, <%= extraData.user_first_name %></p>
-                                    <% } %>
+                                        <p
+                                            style="color: white; font-size: larger; margin-right: 20px; margin-top: 15px;">
+                                            Welcome, <%= extraData.user_first_name %>
+                                        </p>
+                                        <% } %>
                                 </div>
                                 <div class="socail_links">
                                     <ul>
@@ -87,10 +90,12 @@
                                 </div>
                                 <div class="book_btn d-none d-lg-block">
                                     <% if (isLoggedIn) { %>
-                                        <a style="font-size: large; border-radius: 5px;" class="login" href="/logout">Sign Out</a>
-                                    <% } else { %>
-                                        <a style="font-size: large; border-radius: 5px;" class="login" href="/login">Admin Log In</a>
-                                    <% } %>
+                                        <a style="font-size: large; border-radius: 5px;" class="login"
+                                            href="/logout">Sign Out</a>
+                                        <% } else { %>
+                                            <a style="font-size: large; border-radius: 5px;" class="login"
+                                                href="/login">Admin Log In</a>
+                                            <% } %>
                                 </div>
                             </div>
                         </div>
@@ -107,12 +112,13 @@
     <!-- slider_area_start -->
     <div class="slider_area">
         <div class="slider_active owl-carousel">
-            
+
             <div class="single_slider d-flex align-items-center justify-content-center slider_bg_1">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="slider_text text-center" style="background-color: rgba(0, 0, 0, 0.4); padding: 20px 20px 20px 20px;">
+                            <div class="slider_text text-center"
+                                style="background-color: rgba(0, 0, 0, 0.4); padding: 20px 20px 20px 20px;">
                                 <h3>Provo Mental Health</h3>
                                 <p>Unlock to enjoy the view of Martine</p>
                             </div>
@@ -124,7 +130,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="slider_text text-center" style="background-color: rgba(0, 0, 0, 0.4); padding: 20px 20px 20px 20px;">
+                            <div class="slider_text text-center"
+                                style="background-color: rgba(0, 0, 0, 0.4); padding: 20px 20px 20px 20px;">
                                 <h3>Life is Beautiful</h3>
                                 <p>Unlock to enjoy the view of Martine</p>
                             </div>
@@ -136,7 +143,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="slider_text text-center" style="background-color: rgba(0, 0, 0, 0.4); padding: 20px 20px 20px 20px;">
+                            <div class="slider_text text-center"
+                                style="background-color: rgba(0, 0, 0, 0.4); padding: 20px 20px 20px 20px;">
                                 <h3>Montana Resort</h3>
                                 <p>Unlock to enjoy the view of Martine</p>
                             </div>
@@ -148,7 +156,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="slider_text text-center" style="background-color: rgba(0, 0, 0, 0.4); padding: 20px 20px 20px 20px;">
+                            <div class="slider_text text-center"
+                                style="background-color: rgba(0, 0, 0, 0.4); padding: 20px 20px 20px 20px;">
                                 <h3>Life is Beautiful</h3>
                                 <p>Unlock to enjoy the view of Martine</p>
                             </div>
@@ -480,8 +489,11 @@
                     <div class="col-xl-8 col-md-7 col-lg-9">
                         <p class="copy_right">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
                     <div class="col-xl-4 col-md-5 col-lg-3">
                         <div class="socail_links">
@@ -513,51 +525,51 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- Pop up -->
     <!-- form itself end-->
-        <form id="test-form" class="white-popup-block mfp-hide">
-                <div class="popup_box ">
-                        <div class="popup_inner">
-                            <h3>Check Availability</h3>
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-xl-6">
-                                        <input id="datepicker" placeholder="Check in date">
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <input id="datepicker2" placeholder="Check out date">
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="Adult">1</option>
-                                            <option value="1">2</option>
-                                            <option value="2">3</option>
-                                            <option value="3">4</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="Children">1</option>
-                                            <option value="1">2</option>
-                                            <option value="2">3</option>
-                                            <option value="3">4</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="Room type">Room type</option>
-                                            <option value="1">Laxaries Rooms</option>
-                                            <option value="2">Deluxe Room</option>
-                                            <option value="3">Signature Room</option>
-                                            <option value="4">Couple Room</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <button type="submit" class="boxed-btn3">Check Availability</button>
-                                    </div>
-                                </div>
-                            </form>
+    <form id="test-form" class="white-popup-block mfp-hide">
+        <div class="popup_box ">
+            <div class="popup_inner">
+                <h3>Check Availability</h3>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <input id="datepicker" placeholder="Check in date">
+                        </div>
+                        <div class="col-xl-6">
+                            <input id="datepicker2" placeholder="Check out date">
+                        </div>
+                        <div class="col-xl-6">
+                            <select class="form-select wide" id="default-select" class="">
+                                <option data-display="Adult">1</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
+                                <option value="3">4</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-6">
+                            <select class="form-select wide" id="default-select" class="">
+                                <option data-display="Children">1</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
+                                <option value="3">4</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-12">
+                            <select class="form-select wide" id="default-select" class="">
+                                <option data-display="Room type">Room type</option>
+                                <option value="1">Laxaries Rooms</option>
+                                <option value="2">Deluxe Room</option>
+                                <option value="3">Signature Room</option>
+                                <option value="4">Couple Room</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-12">
+                            <button type="submit" class="boxed-btn3">Check Availability</button>
                         </div>
                     </div>
-            </form>
+                </form>
+            </div>
+        </div>
+    </form>
     <!-- form itself end -->
 
     <!-- JS here -->
@@ -592,14 +604,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         $('#datepicker').datepicker({
             iconsLibrary: 'fontawesome',
             icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
         });
         $('#datepicker2').datepicker({
             iconsLibrary: 'fontawesome',
             icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
 
         });
     </script>
