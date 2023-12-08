@@ -67,7 +67,7 @@
 		}
 
         .card {
-            margin-top: 50px;
+            margin-top: 80px;
             background-color: white;
             height: 650px;
             width: 900px;
@@ -241,11 +241,14 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="/">home</a></li>
+                                        <li><a href="/">home</a></li>
                                         <li><a href="/dashboard">Dashboard</a></li>
                                         <li><a href="/resources">Resources</a></li>
-                                        <li><a href="#contact">Contact</a></li>
-                                        <li><a href="/survey">Survey</a></li>
+                                        <li><a href="/">Contact</a></li>
+                                        <li><a class="active" href="/survey">Survey</a></li>
+                                        <% if (isLoggedIn) { %>
+                                            <li><a href="/search">Admin Tools</a></li>
+                                        <% } %>
                                     </ul>
                                 </nav>
                             </div>

@@ -59,6 +59,9 @@
                                         <li><a href="/resources">Resources</a></li>
                                         <li><a href="#contact">Contact</a></li>
                                         <li><a href="/survey">Survey</a></li>
+                                        <% if (isLoggedIn) { %>
+                                            <li><a href="/search">Admin Tools</a></li>
+                                        <% } %>
                                     </ul>
                                 </nav>
                             </div>
