@@ -114,13 +114,29 @@ app.set("view engine", "ejs");
 
                 res.redirect('/search');
             } else {
-                res.send('Invalid Credentials or Insufficient Permissions');
+                res.redirect('/failure');
             }
         })
         .catch((error) => {
           console.error('Error querying the database:', error);
           res.status(500).send('Internal Server Error');
         });
+    });
+
+// failure.ejs
+    app.get("/failure", (req, res) => {
+
+        const isLoggedIn = !!req.session.username;
+
+        const extraData = {
+            username: req.session.username,
+            user_first_name: req.session.user_first_name,
+            // Add more data as needed
+        };
+
+
+        // Render the username.ejs view
+        res.render(path.join(__dirname + '/views/failure.ejs'), { isLoggedIn, extraData });
     });
 
 // Logout
@@ -404,8 +420,8 @@ app.post("/accountmanage", async (req, res) => {
         connection: {
             host: process.env.RDS_HOSTNAME || "localhost",
             user: process.env.RDS_USERNAME || "postgres",
-            password: process.env.RDS_PASSWORD || "IS403BYU",
-            database: process.env.RDS_DB_NAME || "Provo_Mental_Health_Survey",
+            password: process.env.RDS_PASSWORD || "IAmElonMuskrat",
+            database: process.env.RDS_DB_NAME || "provomentalhealthsurvey",
             port: process.env.RDS_PORT || 5432,
             ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
         }
