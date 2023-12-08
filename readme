@@ -1,0 +1,28 @@
+Payton Womack, Jarom  Mollinet, Creed Garner, Landon Webb
+Section 1 Group 4
+
+Admin Login:
+	User: Admin
+	Password: ProvoCity
+
+Description: Page for Provo city about mental health and social media usage. 
+Accountmanage.ejs 
+	Only accessible to admin to manage account permissions
+Dashboard.ejs
+	Holds the live Tableau dashboard
+Failure.ejs
+	View for failed login
+Index.ejs
+	Landing page with about info and connected links
+Login.ejs
+	Page to login and/or request login permission (account)
+Resources.ejs
+	Additional resources for various mental health related organizations and activities
+Search.ejs
+	Land here from Admin login: Report view where the admin can view and search all records in the database
+Survey.ejs
+	View to fill out and submit survey
+Username.ejs
+	When a username has already been taken, it will prompt you to try another username (ensures unique username.)
+Index.js
+	Holds all routes and connections to database, session variables, authentication etc. 
